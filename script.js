@@ -11,8 +11,12 @@
 var generateBtn = document.querySelector("#generate");
 var characterCount;
 
+var password = "";
+
 var lowerCase = "abcdefghijklmnopqrstuvwxyz";
 var arrayLowercase = lowerCase.split("");
+
+console.log(arrayLowercase);
 
 var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var arrayUppercase = uppercase.split("");
@@ -30,6 +34,7 @@ function genaratePrompt () {
   var characters= prompt ("how many characters");
   characterCount = parseInt (characters)
   
+  console.log(characterCount);
   if(characterCount<8 || characterCount>128 || isNaN(characterCount)) {
    alert ("Please try again");
  genaratePrompt ();
@@ -38,23 +43,53 @@ function genaratePrompt () {
 return;
 }
 
+function randomPassword (){
+  for( let i = 1; i <= characterCount; i++){
+    var random = Math.floor(Math.random()
+    * allarrays.length);
+
+    password += allarrays[random];
+    console.log(password);
+  }
+
+
+}
+
 
 
 function generatePassword (){ 
-var password = "";
+ password = "";
+
+genaratePrompt();
 
 var lc = confirm("include lower case");
 
 if (lc === true){
-
+allarrays = allarrays.concat(arrayLowercase);
 }
 
 var uc = confirm("include uppercase");
 
+if (uc === true){
+  allarrays = allarrays.concat(arrayUppercase);
+}
+
 var numbers = confirm("include numbers");
+
+if (numbers ===true){
+  allarrays = allarrays.concat(arrayNumbers);
+}
 
 var sc = confirm ("include special characters");
 
+if (sc === true){
+  allarrays = allarrays.concat(arrayspecial);
+}
+
+console.log(allarrays);
+
+
+randomPassword();
 
 return password;
 
